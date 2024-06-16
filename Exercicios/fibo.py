@@ -1,14 +1,14 @@
 
-def fibonnaci(int):
+def fiboRecursion(int):
 
     if (int<=0):
         return 0
     elif (int==1):
         return 1
     else:
-        return ((fibonnaci (int - 1)) + (fibonnaci (int - 2)))
+        return ((fiboRecursion (int - 1)) + (fiboRecursion (int - 2)))
 
-def fibo(int):
+def fiboIterative(int):
 
     if (int <= 0):
         return 0
@@ -30,8 +30,8 @@ def fibo(int):
 
 #  0 1 1 2 3 5 8 13 21 34 55 
 
-print (fibonnaci(5))
+print (fiboRecursion(5))
 
-print (fibo(5)) 
+print (fiboIterative(5)) 
 
 
