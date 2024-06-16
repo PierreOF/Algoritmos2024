@@ -39,7 +39,9 @@ class LinkedList:
     def reverse(self):
         prev = None
         current = self.head
+
         self.tail = self.head  # A nova cauda será a cabeça antiga
+        
         while current is not None:
             next_node = current.next
             current.next = prev

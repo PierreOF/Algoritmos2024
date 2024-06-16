@@ -1,23 +1,21 @@
 import numpy as np
 
-class Node():
-    def __init__(self,ant,valor,prox):
-        self.prox = prox
+class Node:
+    def __init__(self, ant=None, valor=None, prox=None):
         self.ant = ant
         self.valor = valor
+        self.prox = prox
 
     def __str__(self):
         return f"{self.valor}"
 
-class Lista():
-
+class Lista:
     def __init__(self):
         self.ca = None
         self.cd = None
 
-    def inserirCabeca(self,valor):
-        
-        node = Node(None,valor,None)
+    def inserirCabeca(self, valor):
+        node = Node(None, valor, None)
 
         if self.ca is None:
             self.ca = node
@@ -27,9 +25,8 @@ class Lista():
             node.prox = self.ca
             self.ca = node
 
-    def inserirCauda(self,valor):
-
-        node = Node(None,valor,None)
+    def inserirCauda(self, valor):
+        node = Node(None, valor, None)
 
         if self.cd is None:
             self.ca = node
@@ -40,25 +37,31 @@ class Lista():
             self.cd = node
 
     def deletarCabeca(self):
+        if self.ca is None:
+            raise Exception("A lista já está vazia")
 
         if self.ca.prox is None:
-            raise Exception("A lista já está vazia")
+            self.ca = None
+            self.cd = None
+        else:
+            self.ca = self.ca.prox
+            self.ca.ant = None
 
-        (self.ca.prox).ant = None
-        self.ca = self.ca.prox
-        
     def deletarCauda(self):
-        
-        if self.cd.ant is None:
+        if self.cd is None:
             raise Exception("A lista já está vazia")
 
-        self.cd = self.cd.ant
+        if self.cd.ant is None:
+            self.ca = None
+            self.cd = None
+        else:
+            self.cd = self.cd.ant
+            self.cd.prox = None
 
 
     def getLista(self):
-        return f"cabeça = {self.ca} cauda = {self.cd}"
-
-
+        return f"{self.ca} {self.ca.prox} {self.cd.ant} {self.cd}"
+    
 
 lista = Lista()
 
@@ -66,6 +69,6 @@ lista.inserirCabeca(10)
 lista.inserirCabeca(11)
 lista.inserirCabeca(12)
 
-lista.deletarCabeca()
+lista.inserirCabeca(122)
 
 print(lista.getLista())
